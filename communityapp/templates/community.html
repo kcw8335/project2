@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+<div class="container">
+    {% if user.is_authenticated %}
+        <button type="button" class="btn btn-dark btn-lg btn-block"><a href="{% url 'communitywrite' %}" style="color: white">글쓰기</a></button>
+    {% else %}
+        <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="{% url 'accountsapp' %}" style="color: white">글쓰기는 회원만 가능합니다. 로그인 페이지로...</a></button>
+    {% endif %}
+</div>
+<br>
+
+{% for community in posts %}
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            작성자 : {{community.user}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{community.title}}</h5>
+            <p class="card-text">{{community.summary}}</p>
+            <a href="{% url 'communitydetail' community.id %}" class="btn btn-dark">더보기</a>
+        </div>
+        <div class="card-footer text-muted">
+            작성일 : {{community.pub_date}}
+        </div>
+    </div>
+</div>
+<br>
+{% endfor %}
+
+<div class="container">
+{%if posts.has_previous%}
+<a href="?page=1">First</a>
+<a href="?page={{posts.previous_page_number}}">Previous</a>
+{%endif%}
+
+<span>{{posts.number}}</span>
+<span>of</span>
+<span>{{posts.paginator.num_pages}}</span>
+
+{%if posts.has_next%}
+<a href="?page={{posts.next_page_number}}">Next</a>
+<a href="?page={{posts.paginator.num_pages}}">Last</a>
+{%endif%}
+</div>
+{% endblock %}

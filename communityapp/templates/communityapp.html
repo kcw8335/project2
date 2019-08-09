@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="card mb-3">
+            <a href="{% url 'notice' %}"><img src="{% static 'notice.jpg' %}" class="card-img-top" alt="notice"></a>
+            <div class="card-body">
+                <h5 class="card-title">공지사항</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="card mb-3">
+            <a href="{% url 'community' %}"><img src="{% static 'community.jpg' %}" class="card-img-top" alt="community"></a>
+            <div class="card-body">
+                <h5 class="card-title">자유게시판</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="card mb-3">
+            <a href="{% url 'about' %}"><img src="{% static 'about.png' %}" class="card-img-top" alt="about"></a>
+            <div class="card-body">
+                <h5 class="card-title">About us</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

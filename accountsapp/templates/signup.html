@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+<form id="member_form" name="member_form" method="POST" action="{% url 'signup' %}"onsubmit="return validate(this);" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+        <!--
+        <table width="552" align="center">
+        <tbody><tr>
+            <td align="left" colspan="1">
+                <p align="left" style="margin-top:60px;margin-bottom:0;"><span style="color:#007ac3;font-weight:bold;font-size:1.4em"><b><i class="fas fa-caret-square-right"></i> 소셜 계정으로 간편 가입 </b></span></p>
+                <p align="left" style="margin-top:20px;margin-bottom:0;"><a href="../main/oauth/login.php?service=naver" target="_blank"><img src="img/login_sns_3.png"></a>&nbsp;&nbsp;&nbsp;<a href="../main/oauth/login.php?service=kakao" target="_blank"><img src="img/login_sns_2.png"></a></p>
+
+                <p align="left" style="margin-top:50px;margin-bottom:15px"><span style="color:#007ac3;font-weight:bold;font-size:1.4em"><b><i class="fas fa-caret-square-right"></i> 일반 회원가입 </b></span></p>
+            </td>
+        </tr>
+    </tbody></table>
+    -->
+    <table width="552" align="center" style="margin-top:10px">
+        <tbody><tr>
+            <td height="5"></td>
+        </tr>
+        <tr>
+            <td align="left" width="120" height="66" valign="middle">
+                아이디 (이메일)
+            </td>
+            <td>
+                <p align="left" style="margin-top:10px;margin-bottom:10px">
+                    <input type="email" class="form-control" id="mb_id" name="mb_id" size="30" maxlength="50" placeholder="아이디 (이메일)" required="" option="email" style="width:100%;height:46px;border-radius:0px">
+                </p>
+                <p id="cmt1" class="cmt" style="display:none"></p>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" width="120" height="66" valign="middle">
+                비밀번호
+            </td>
+            <td>
+                <p align="left" style="margin-top:10px;margin-bottom:10px">
+                    <input type="password" class="form-control" name="mb_pass" id="login-password-input" placeholder="비밀번호" style="width:100%;height:46px;border-radius:0px;" maxlength="50" required=""></p>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" width="120" height="66" valign="middle">
+                이름 (상호)
+            </td>
+            <td>
+                <p align="left" style="margin-top:10px;margin-bottom:10px">
+                    <input type="username" class="form-control" id="mb_name" name="mb_name" size="30" maxlength="30" placeholder="성명(상호)" value="" required="" style="width:100%;height:46px;border-radius:0px;"></p>
+                <input type="hidden" name="of[mb_name]" value="1">
+                <p id="cmt10" class="cmt" style="display:none"></p>
+            </td>
+        </tr>
+        </tbody></table>
+
+
+        <table width="552" align="center" name="local_tel" id="local_tel">
+        <tbody><tr>
+            <td align="left" width="110" height="66" valign="middle">
+                휴대폰번호
+                <!-- <br><Font color=red><b>*필수</font></b> -->
+            </td>
+            <td>
+                <select name="mb_tel21" style="float:left;width:144px;height:46px;border-radius:0px" class="form-control">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                    </select><input type="phone_number" class="form-control" value="" name="mb_tel22" id="mb_tel22" maxlength="4" placeholder="" style="float:left;width:144px;height:46px;border-radius:0px;border-left:0px;border-right:0px;"><input type="text" class="form-control" value="" name="mb_tel23" id="mb_tel23" maxlength="4" placeholder="" style="float:left;width:144px;height:46px;border-radius:0px;">
+            </td>
+        </tr>
+        </tbody></table>
+
+        <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+        <table width="552" align="center" name="local_addr" id="local_addr">
+            <tbody><tr>
+            <td align="left" width="110" height="66" valign="middle">
+                배송주소
+                <!-- <br><Font color=red><b>*필수</font></b> -->
+            </td>
+            <td>
+                <p align="left" style="margin-top:10px;margin-bottom:10px">
+                    <input type="registered" name="addr1" id="roadAddrPart1" class="form-control"  style="width:288px;height:46px;border-radius:0px;float:left;cursor:pointer;" readonly="" onclick="sample3_execDaumPostcode()">
+                    <input class="form-control" type="button" onclick="openZipSearch()" value="주소 찾기" style="width:144px;height:46px;font-weight:bold;font-size:1.1em;background-color:#cccccc;border-color:#cccccc;border-radius:0px;float:left;"></p>
+
+                <div id="detail_address" style="display:none"><p align="left" style="margin-top:10px;margin-bottom:10px">
+                    <input type="text" name="addr2" id="roadAddrPart2" class="form-control" placeholder="상세주소" style="width:432px;height:46px;border-radius:0px;float:left;margin-top:10px;">
+                </p>
+                </div>            
+
+            </td>
+        </tr>
+        </tbody></table>
+        
+        <table width="552" align="center">
+        <tbody>
+        <tr>
+            <td align="left" colspan="2">
+                <p align="left" style="margin-top:45px;margin-bottom:100px">
+                    <button type="submit" class="btn btn-primary btn-block" style="height:50px;font-weight:bold;font-size:1.1em;background-color:#007ac3;border-radius:0px;">회원가입</button>
+                </p>
+            </td>
+        </tr>
+    </tbody></table>
+    </div>
+</form>
+
+
+<script>
+
+        function openZipSearch() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+                    $('[name=addr1]').val(data.address);
+                    $('[name=addr2]').val(data.buildingName);
+                }
+            }).open();
+        }
+        
+        </script>
+
+
+{% endblock %}

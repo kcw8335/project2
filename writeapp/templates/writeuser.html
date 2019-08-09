@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+<head>
+        <meta charset="utf-8">
+        <title>HTML</title>
+        <style>
+            table {
+            width: 100%;
+            }
+            table, th, td {
+            border: 1px solid #bcbcbc;
+            }
+    
+            input:focus, textarea:focus{outline: none; }
+    
+            .jb-th-1 {
+            width: 150px;
+            }
+            .jb-th-2 {
+            width: 250px;
+            }
+            div.button {
+                margin: auto;
+                width: 50%;
+            }
+            div.button.input{
+                padding: 35px;
+                width: 100%;
+                font-size: 48px;
+            }
+            
+        </style>
+    </head>
+    <div class="container">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>진정내용<br>
+    <table>
+        <tbody>
+            <tr>
+            <th class="jb-th-1">입사일</th>
+            <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            <th class="jb-th-1">퇴사일</th>
+            <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" style="width:100%;border:0px;"></td>
+            </tr>
+            <tr>
+            <th class="jb-th-1">체불임금총액</th>
+            <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            <th class="jb-th-1">퇴직여부</th>
+            <td class="jb-th-2"><input type=radio name=a value=a1 > 퇴직  
+                <input type=radio name=a value=a1> 재직</td>
+            </tr>
+            <tr>
+            <th class="jb-th-1">체불퇴직금액</th>
+            <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            <th class="jb-th-1">기타체불금액</th>
+            <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            </tr>
+            <tr>
+            <th>업무내용</th>
+            <td colspan="3"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            </tr>
+            <tr>
+                <th class="jb-th-1">임금지급일</th>
+                <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+                <th class="jb-th-1">근로계약방법</th>
+                <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td colspan="3"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            </tr>
+        </tbody>
+    
+        </table>
+    <br><br>
+        <table style="border:hidden;">
+            <tr>
+                <td>
+                    <form method="POST" action="{% url 'writeapp'%}">
+                            {% csrf_token %}
+                        <p align="center" style="margin-top:10px;margin-bottom:10px"><button type="submit" class="btn btn-primary btn-block"class="btn btn-primary" style="width:305px;height:50px;font-weight:bold;font-size:1.1em;background-color:#0fc99a;border-radius:0px;">이전 단계</button></p>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="#">
+                            {% csrf_token %}
+                        <p align="center" style="margin-top:10px;margin-bottom:10px"><button type="submit" class="btn btn-primary btn-block"class="btn btn-primary" style="width:305px;height:50px;font-weight:bold;font-size:1.1em;background-color:#0fc99a;border-radius:0px;">다음 단계</button></p>
+                        </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

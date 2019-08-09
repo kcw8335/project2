@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+<head>
+    <meta charset="utf-8">
+    <title>HTML</title>
+    <style>
+        table {
+        width: 100%;
+        }
+        table, th, td {
+        border: 1px solid #bcbcbc;
+        }
+
+        input:focus, textarea:focus{outline: none; }
+
+        .jb-th-1 {
+        width: 150px;
+        }
+        .jb-th-2 {
+        width: 250px;
+        }
+        div.button {
+            margin: auto;
+            width: 50%;
+        }
+        div.button.input{
+            padding: 35px;
+            width: 100%;
+            font-size: 48px;
+        }
+        h1, h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<div class="container">
+<br>
+<h1>진정성 작성 메인 페이지 </h1>
+
+<br><h2>임금체불 진정서</h2>
+<br><br>진정인
+<table>
+    <tbody>
+        <tr>
+        <th class="jb-th-1">성명</th>
+        <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        <th class="jb-th-1">주민등록번호</th>
+        <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td colspan="3"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+        <th class="jb-th-1">전화번호</th>
+        <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        <th class="jb-th-1">휴대폰번호</th>
+        <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td colspan="3"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+            <th class="jb-th-1">수신여부확인</th>
+            <td colspan="3" class="jb-th-2"><input type=radio name=a value=a1 > 예  
+                <input type=radio name=a value=a1> 아니오</td>
+        </tr>
+    </tbody>
+</table><br>
+피진정인<br>
+<table>
+    <tbody>
+        <tr>
+            <th class="jb-th-1">성명</th>
+            <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+            <th class="jb-th-1">연락처</th>
+            <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td colspan="3"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+            <th class="jb-th-1">수신여부확인</th>
+            <td colspan="3" class="jb-th-2"><input type=radio name=a value=a1 >사업장    
+            <input type=radio name=a value=a1>공사현장</td>
+        </tr>
+        <tr>
+            <th>회사명</th>
+            <td colspan="3"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+            <th>회사주소<br>(실근무장소)</th>
+            <td colspan="3"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        </tr>
+        <tr>
+        <th class="jb-th-1">회사전화번호</th>
+        <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        <th class="jb-th-1">근로자수</th>
+        <td class="jb-th-2"><input type="text" id="id" name="id" class="int" title="ID" size =10 style="width:100%;border:0px;"></td>
+        </tr>
+    </tbody>
+</table>
+
+<form method="POST" action="{% url 'writeuser'%}">
+        {% csrf_token %}
+    <p align="center" style="margin-top:10px;margin-bottom:10px"><button type="submit" class="btn btn-primary btn-block"class="btn btn-primary" style="width:305px;height:50px;font-weight:bold;font-size:1.1em;background-color:#0fc99a;border-radius:0px;">다음 단계</button></p>
+    </form>
+  </div>
+    {% endblock %}
+    

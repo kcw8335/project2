@@ -1,0 +1,64 @@
+
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+
+{% load staticfiles %}
+
+
+<div style="background-color:white;border-top:4px solid #007ac3;margin-bottom:80px;">
+    <p align="center" style="margin-top:70px;margin-bottom:10px"><img src="{%static 'login_text2.png'%}"></p>
+    <p align="center" style="margin-top:17px;margin-bottom:0px"><span style="font-size:10pt;color:#909090">아이디와 비밀번호를 입력해주세요.</span></p>
+    <p align="center" style="margin-top:0px;margin-bottom:10px"><span style="font-size:10pt;color:#909090">비밀번호는 대소문자를 구분합니다.</span></p>
+    <form method="POST" action="{% url 'login'%}">
+        {% csrf_token %}
+    <p align="center" style="margin-top:23px;margin-bottom:10px"><input type="email" class="form-control" maxlength="80" name="mb_id" id="login-email-input" value="" placeholder="아이디(이메일)" style="width:305px;height:46px;border-radius:0px" required="" tabindex="101"></p>
+    <p align="center" style="margin-top:10px;margin-bottom:10px"><input type="password" class="form-control" value="" maxlength="50" name="mb_pass" id="login-password-input" placeholder="비밀번호" style="width:305px;height:46px;border-radius:0px" required="" tabindex="102"></p>
+    <p align="center" style="margin-top:10px;margin-bottom:10px"><button type="submit" class="btn btn-primary btn-block"class="btn btn-primary" style="width:305px;height:50px;font-weight:bold;font-size:1.1em;background-color:#007ac3;border-radius:0px;">로그인</button></p>
+    </form>
+    <table width="305" align="center">
+        <tbody><tr>
+            <td align="left" width="50%"><label style="color:#909090;font-weight:normal;font-size:10pt"><input id="auto_login" name="auto_login" type="checkbox" value="ok" onclick="cmt(this);" style="width:24px;height:24px;position: relative;vertical-align: middle;bottom: 3px;"> 자동로그인</label></td>
+            <td align="right" width="50%" valign="top" style="padding-top:2px"><span style="color:#909090;font-size:10pt"><a href="javascript://" onclick="location.href='../gn_member/find_id.php'">아이디</a>/<a href="javascript://" onclick="location.href='../gn_member/find_pass.php'">비밀번호 찾기</a></span></td>
+        </tr>
+    </tbody></table>
+    
+    <p align="center" style="margin-top:25px;margin-bottom:0px"><span style="font-size:10pt;color:#909090">SNS 계정으로 바로 시작하세요.</span></p>
+    
+    <table width="305" align="center" style="margin-top:15px;margin-bottom:0;">
+        <tbody><tr>
+            <td align="left" width="50%"><div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-auto-logout-link="True" data-use-continue-as="True"></div></td>
+            <td align="right" width="50%"><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></td>
+        </tr>
+    </tbody></table>      
+    <p align="center" style="margin-top:20px;margin-bottom:60px"><button type="button" class="btn btn-primary" style="width:305px;height:48px;font-weight:bold;font-size:1.1em;background-color:white;border-radius:0px;border:1px solid #0179c7;color:#0179c7;" onclick="javascript:location.href='signup';">회원가입</button></p>
+    <br><br>
+</div>
+
+
+
+<script>
+    function onSignIn(googleUser) {
+      // Useful data for your client-side scripts:
+      var profile = googleUser.getBasicProfile();
+      console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log("Image URL: " + profile.getImageUrl());
+      console.log("Email: " + profile.getEmail());
+
+      // The ID token you need to pass to your backend:
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token);
+    }
+  </script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.3&appId=703220063432552&autoLogAppEvents=1"></script>
+
+{% endblock %}
